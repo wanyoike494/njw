@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Joseph Wanyoike Njoroge — Data Analyst & Full Stack Developer</title>
+  <meta name="description" content="Portfolio of Joseph Wanyoike Njoroge — Data Analyst, Full Stack Developer & Finance Analyst. Lead Developer of the World Data Analysis Project."/>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'green-deep':  '#1a3c2e',
+            'green-mid':   '#2d6a4f',
+            'green-light': '#52b788',
+            'green-pale':  '#b7e4c7',
+            'blue-deep':   '#0a2744',
+            'blue-mid':    '#1565c0',
+            'blue-sky':    '#4a9fd4',
+            'blue-pale':   '#bbdefb',
+            'brown-deep':  '#3e2723',
+            'brown-mid':   '#795548',
+            'brown-light': '#a1887f',
+            'brown-pale':  '#d7ccc8',
+            'cream':       '#f9f6f0',
+            'warm-white':  '#fefcf8',
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body:    ['"DM Sans"', 'sans-serif'],
+            mono:    ['"DM Mono"', 'monospace'],
+          },
+          animation: {
+            'fade-up':    'fadeUp 0.7s ease forwards',
+            'fade-in':    'fadeIn 0.5s ease forwards',
+            'spin-slow':  'spin 12s linear infinite',
+            'pulse-slow': 'pulse 3s ease-in-out infinite',
+            'float':      'float 4s ease-in-out infinite',
+            'ticker':     'ticker 30s linear infinite',
+          },
+          keyframes: {
+            fadeUp:  { '0%':{ opacity:'0', transform:'translateY(24px)' }, '100%':{ opacity:'1', transform:'translateY(0)' } },
+            fadeIn:  { '0%':{ opacity:'0' }, '100%':{ opacity:'1' } },
+            float:   { '0%,100%':{ transform:'translateY(0)' }, '50%':{ transform:'translateY(-10px)' } },
+            ticker:  { 'to':{ transform:'translateX(-50%)' } },
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══ VANILLA CSS — Custom & Override Layer ═══════════════ */
+    :root {
+      --green-deep:  #1a3c2e;
+      --green-mid:   #2d6a4f;
+      --green-light: #52b788;
+      --green-pale:  #b7e4c7;
+      --blue-deep:   #0a2744;
+      --blue-mid:    #1565c0;
+      --blue-sky:    #4a9fd4;
+      --blue-pale:   #bbdefb;
+      --brown-deep:  #3e2723;
+      --brown-mid:   #795548;
+      --brown-light: #a1887f;
+      --brown-pale:  #d7ccc8;
+      --cream:       #f9f6f0;
+      --warm-white:  #fefcf8;
+      --border:      #e8e2d8;
+      --shadow-sm:   0 2px 12px rgba(26,60,46,0.08);
+      --shadow-md:   0 8px 32px rgba(26,60,46,0.14);
+      --shadow-lg:   0 20px 60px rgba(26,60,46,0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: #1a1a1a;
+      overflow-x: hidden;
+    }
+
+    /* ── Grain texture overlay */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: 0.5;
+    }
+
+    /* ── Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left  { opacity: 0; transform: translateX(-32px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal-left.visible  { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(32px);  transition: opacity .7s ease, transform .7s ease; }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ── NAV */
+    .nav-glass {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(249,246,240,0.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow .3s;
+    }
+    .nav-glass.scrolled { box-shadow: var(--shadow-md); }
+    .nav-link {
+      font-size: .85rem; font-weight: 500; color: #4a4a4a;
+      padding: 6px 14px; border-radius: 8px;
+      transition: all .22s;
+      white-space: nowrap;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--green-deep);
+      background: var(--green-pale);
+    }
+    .nav-cta {
+      background: var(--green-deep); color: #fff;
+      padding: 8px 20px; border-radius: 8px;
+      font-weight: 600; font-size: .85rem;
+      transition: all .25s;
+    }
+    .nav-cta:hover { background: var(--green-mid); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(45,106,79,.35); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none; flex-direction: column; gap: 4px;
+      background: rgba(249,246,240,0.98);
+      backdrop-filter: blur(18px);
+      padding: 16px; border-top: 1px solid var(--border);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu .nav-link { display: block; padding: 10px 14px; }
+
+    /* ── Hamburger */
+    .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--green-deep); border-radius: 2px;
+      transition: all .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── Ticker */
+    .ticker-track { display: flex; gap: 60px; width: max-content; animation: ticker 32s linear infinite; }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+
+    /* ── HERO */
+    .hero-section {
+      min-height: 100vh;
+      background: linear-gradient(160deg, var(--warm-white) 0%, var(--cream) 60%, #e8f5e9 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero-orb1, .hero-orb2 {
+      position: absolute; border-radius: 50%;
+      filter: blur(90px); pointer-events: none;
+    }
+    .hero-orb1 { width: 600px; height: 600px; background: radial-gradient(circle, var(--green-light), transparent); top: -200px; left: -150px; opacity: .12; animation: drift1 14s ease-in-out infinite alternate; }
+    .hero-orb2 { width: 500px; height: 500px; background: radial-gradient(circle, var(--blue-sky), transparent); bottom: -150px; right: -100px; opacity: .1; animation: drift2 16s ease-in-out infinite alternate; }
+    @keyframes drift1 { to { transform: translate(80px, 50px); } }
+    @keyframes drift2 { to { transform: translate(-50px, -40px); } }
+
+    /* Profile picture */
+    .profile-wrap {
+      position: relative; width: 180px; height: 180px; margin: 0 auto;
+    }
+    .profile-ring {
+      position: absolute; inset: -6px;
+      border-radius: 50%;
+      background: conic-gradient(var(--green-light) 0%, var(--blue-sky) 30%, var(--green-mid) 60%, var(--brown-light) 80%, var(--green-light) 100%);
+      animation: spin 8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .profile-ring-inner {
+      position: absolute; inset: 3px;
+      background: var(--cream);
+      border-radius: 50%;
+    }
+    .profile-img {
+      position: absolute; inset: 8px;
+      border-radius: 50%;
+      object-fit: cover; width: calc(100% - 16px); height: calc(100% - 16px);
+      background: linear-gradient(135deg, var(--green-mid), var(--blue-deep));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; color: rgba(255,255,255,.7);
+      transition: transform .4s;
+    }
+    .profile-wrap:hover .profile-img { transform: scale(1.04); }
+    .profile-wrap:hover .profile-ring { animation-duration: 2s; }
+
+    /* Floating badges */
+    .floating-badge {
+      position: absolute;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: .68rem; font-weight: 600;
+      box-shadow: var(--shadow-sm);
+      white-space: nowrap;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-8px); } }
+
+    /* Title typewriter */
+    .typewriter::after {
+      content: '|';
+      animation: blink .7s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{ opacity: 1; } 50%{ opacity: 0; } }
+
+    /* WDA button */
+    .wda-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--green-deep), var(--blue-deep));
+      color: #fff; padding: 12px 28px; border-radius: 50px;
+      font-weight: 600; font-size: .9rem;
+      transition: all .3s; box-shadow: 0 4px 20px rgba(26,60,46,.3);
+    }
+    .wda-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(26,60,46,.4); }
+    .wda-btn .globe-spin { animation: spin 3s linear infinite; display: inline-block; }
+
+    /* Social buttons */
+    .social-icon-btn {
+      width: 42px; height: 42px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1.5px solid var(--border);
+      color: #4a4a4a; font-size: 16px;
+      transition: all .25s; cursor: pointer;
+      text-decoration: none;
+    }
+    .social-icon-btn:hover { transform: translateY(-3px); color: #fff; border-color: transparent; }
+    .social-icon-btn.li:hover  { background: #0077b5; }
+    .social-icon-btn.gh:hover  { background: #333; }
+    .social-icon-btn.wa:hover  { background: #25d366; }
+    .social-icon-btn.wab:hover { background: #128c7e; }
+    .social-icon-btn.fb:hover  { background: #1877f2; }
+    .social-icon-btn.x:hover   { background: #000; }
+    .social-icon-btn.th:hover  { background: #101010; }
+    .social-icon-btn.ig:hover  { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+    .social-icon-btn.tg:hover  { background: #0088cc; }
+    .social-icon-btn.sc:hover  { background: #fffc00; color: #000 !important; }
+    .social-icon-btn.ms:hover  { background: #0084ff; }
+    .social-icon-btn.tt:hover  { background: #010101; }
+
+    /* ── SECTION DIVIDERS */
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem; font-weight: 500; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--green-mid);
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 12px;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900; color: var(--green-deep);
+      line-height: 1.1;
+    }
+
+    /* ── WDA DATA STRIP — shared style */
+    .data-strip {
+      background: linear-gradient(135deg, var(--green-deep) 0%, var(--blue-deep) 100%);
+      padding: 24px clamp(1rem,4vw,3rem);
+      position: relative; overflow: hidden;
+    }
+    .data-strip::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* ── SKILL BARS */
+    .skill-bar-track {
+      height: 8px; background: var(--border); border-radius: 4px; overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%; border-radius: 4px;
+      width: 0%; transition: width 1.4s cubic-bezier(.25,.8,.25,1);
+    }
+
+    /* ── CHART CARDS */
+    .chart-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px;
+      box-shadow: var(--shadow-sm);
+      transition: all .3s;
+      position: relative; overflow: hidden;
+    }
+    .chart-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--green-light), var(--blue-sky));
+      opacity: 0; transition: opacity .3s;
+    }
+    .chart-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--green-pale); }
+    .chart-card:hover::before { opacity: 1; }
+
+    /* Map blobs */
+    .blob {
+      position: absolute;
+      opacity: .5;
+      animation: wobble 9s ease-in-out infinite;
+    }
+    @keyframes wobble {
+      0%,100% { border-radius: 50% 40% 60% 30% / 40% 50% 60% 50%; transform: scale(1); }
+      50%      { border-radius: 30% 60% 40% 70% / 60% 40% 50% 40%; transform: scale(1.04); }
+    }
+
+    /* ── PROJECT CARDS */
+    .project-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 20px; overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all .35s cubic-bezier(.25,.8,.25,1);
+    }
+    .project-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+    .project-card-banner { height: 180px; position: relative; overflow: hidden; }
+    .project-card-banner .overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, transparent 60%);
+    }
+
+    /* ── BLOG BRIEFS */
+    .blog-brief {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 20px;
+      box-shadow: var(--shadow-sm);
+      transition: all .3s; cursor: pointer;
+    }
+    .blog-brief:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--green-pale); }
+
+    /* ── CONTACT FORM */
+    .form-input {
+      width: 100%; padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px; font-family: 'DM Sans', sans-serif;
+      font-size: .9rem; background: var(--warm-white);
+      outline: none; transition: all .25s;
+      color: #1a1a1a;
+    }
+    .form-input:focus { border-color: var(--green-light); box-shadow: 0 0 0 3px rgba(82,183,136,.15); }
+    .form-label { font-size: .82rem; font-weight: 600; color: #4a4a4a; margin-bottom: 6px; display: block; }
+
+    .submit-btn {
+      background: linear-gradient(135deg, var(--green-deep), var(--blue-deep));
+      color: #fff; padding: 13px 32px; border-radius: 10px;
+      font-weight: 700; font-size: .95rem; border: none; cursor: pointer;
+      transition: all .3s; width: 100%;
+    }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,60,46,.35); }
+
+    /* ── FOOTER */
+    footer { background: var(--brown-deep); color: rgba(255,255,255,.75); }
+    .footer-link { color: rgba(255,255,255,.5); transition: color .2s; font-size: .85rem; }
+    .footer-link:hover { color: var(--green-pale); }
+
+    /* ── Stat tiles */
+    .stat-tile {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px; padding: 16px 18px;
+      transition: all .3s; cursor: default;
+    }
+    .stat-tile:hover { background: rgba(255,255,255,.12); transform: translateY(-3px); }
+
+    /* ── Edu card */
+    .edu-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: all .3s;
+    }
+    .edu-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+
+    /* ── Responsive nav hidden */
+    @media (min-width: 768px) { .hamburger { display: none; } }
+    @media (max-width: 767px) { .desktop-nav { display: none !important; } }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════════════════════ -->
+<nav class="nav-glass" id="navbar">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-2">
+        <div class="w-9 h-9 rounded-lg flex items-center justify-center text-lg"
+             style="background:linear-gradient(135deg,var(--green-mid),var(--blue-sky))">🌍</div>
+        <div>
+          <div class="font-display font-bold text-sm leading-tight" style="color:var(--green-deep)">Joseph Wanyoike</div>
+          <div class="font-mono text-xs" style="color:var(--green-mid)">Njoroge</div>
+        </div>
+      </a>
+
+      <!-- Desktop links -->
+      <div class="desktop-nav flex items-center gap-1">
+        <a href="#home"      class="nav-link">Home</a>
+        <a href="#wda"       class="nav-link">World Data</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#projects"  class="nav-link">Projects</a>
+        <a href="#blog"      class="nav-link">Blog</a>
+        <a href="#contact"   class="nav-link">Contact</a>
+        <a href="http://www.worlddataanalysis.com" target="_blank" class="nav-cta ml-2">WDA Project</a>
+      </div>
+
+      <!-- Hamburger -->
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#home"      class="nav-link">🏠 Home</a>
+    <a href="#wda"       class="nav-link">🌍 World Data Analysis</a>
+    <a href="#education" class="nav-link">🎓 Education & Skills</a>
+    <a href="#projects"  class="nav-link">💻 Projects</a>
+    <a href="#blog"      class="nav-link">📰 Blog Briefs</a>
+    <a href="#contact"   class="nav-link">✉️ Contact</a>
+    <a href="http://www.worlddataanalysis.com" target="_blank" class="nav-cta text-center mt-2">🌍 WDA Project</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TICKER
+════════════════════════════════════════════════════════════ -->
+<div style="background:var(--blue-deep);padding:7px 0;overflow:hidden;margin-top:64px;">
+  <div class="ticker-track" style="font-family:'DM Mono',monospace;font-size:.72rem;color:rgba(255,255,255,.75);">
+    <span style="white-space:nowrap;padding-right:60px"><span style="color:var(--green-light)">↑</span> World Population: 8.12B &nbsp;●&nbsp; <span style="color:var(--green-light)">↑</span> Global GDP: $105T &nbsp;●&nbsp; CO₂: 421ppm &nbsp;●&nbsp; <span style="color:var(--green-light)">↑</span> Renewables: 30% energy mix &nbsp;●&nbsp; Life Expectancy: 73.3 yrs &nbsp;●&nbsp; Internet Users: 5.4B &nbsp;●&nbsp; Forest Cover: 31% &nbsp;●&nbsp; WDA Project — Making data transparent for everyone &nbsp;●&nbsp;</span>
+    <span style="white-space:nowrap;padding-right:60px"><span style="color:var(--green-light)">↑</span> World Population: 8.12B &nbsp;●&nbsp; <span style="color:var(--green-light)">↑</span> Global GDP: $105T &nbsp;●&nbsp; CO₂: 421ppm &nbsp;●&nbsp; <span style="color:var(--green-light)">↑</span> Renewables: 30% energy mix &nbsp;●&nbsp; Life Expectancy: 73.3 yrs &nbsp;●&nbsp; Internet Users: 5.4B &nbsp;●&nbsp; Forest Cover: 31% &nbsp;●&nbsp; WDA Project — Making data transparent for everyone &nbsp;●&nbsp;</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO / HOME
+════════════════════════════════════════════════════════════ -->
+<section id="home" class="hero-section flex items-center py-16 px-4 sm:px-6">
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+
+  <div class="max-w-6xl mx-auto w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+      <!-- LEFT: text -->
+      <div class="order-2 lg:order-1" style="animation: fadeUp .8s ease forwards;">
+
+        <div class="section-label mb-4">Portfolio — Lead Developer & Analyst</div>
+
+        <h1 class="font-display font-black leading-tight mb-3" style="font-size:clamp(2.4rem,5vw,3.8rem);color:var(--green-deep);">
+          Joseph<br><span style="color:var(--blue-mid)">Wanyoike</span><br>Njoroge
+        </h1>
+
+        <!-- Animated titles -->
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="px-3 py-1 rounded-full text-sm font-semibold" style="background:var(--green-pale);color:var(--green-deep);">📊 Data Analyst</span>
+          <span class="px-3 py-1 rounded-full text-sm font-semibold" style="background:var(--blue-pale);color:var(--blue-deep);">💻 Full Stack Developer</span>
+          <span class="px-3 py-1 rounded-full text-sm font-semibold" style="background:var(--brown-pale);color:var(--brown-deep);">💰 Finance Analyst</span>
+        </div>
+
+        <!-- WDA Role card -->
+        <div class="rounded-2xl p-4 mb-6" style="background:linear-gradient(135deg,var(--green-deep),var(--blue-deep));color:white;">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-2xl">🌍</span>
+            <div>
+              <div class="font-semibold text-sm" style="color:var(--green-pale)">World Data Analysis Project</div>
+              <div style="font-size:.72rem;color:rgba(255,255,255,.55)">www.worlddataanalysis.com</div>
+            </div>
+          </div>
+          <div class="text-sm" style="color:rgba(255,255,255,.8);">
+            <div>🔹 Lead Full Stack Web Developer</div>
+            <div>🔹 Lead Data Analyst</div>
+          </div>
+        </div>
+
+        <!-- WDA Link button -->
+        <div class="mb-6">
+          <a href="http://www.worlddataanalysis.com" target="_blank" class="wda-btn inline-flex">
+            <span class="globe-spin">🌍</span>
+            Visit World Data Analysis
+          </a>
+        </div>
+
+        <!-- Social media buttons — 2 rows -->
+        <div class="mb-2 text-xs font-semibold uppercase tracking-widest" style="color:var(--text-light,#7a7a7a)">Connect with me</div>
+        <div class="flex flex-wrap gap-2 mb-2">
+          <a href="https://linkedin.com" target="_blank" class="social-icon-btn li" title="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://github.com" target="_blank" class="social-icon-btn gh" title="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <a href="https://wa.me/254725455307" target="_blank" class="social-icon-btn wa" title="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+          <a href="#" target="_blank" class="social-icon-btn wab" title="WhatsApp Business">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          </a>
+          <a href="#" class="social-icon-btn fb" title="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-icon-btn x" title="X / Twitter">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <a href="#" class="social-icon-btn th" title="Threads">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.5 12.068V12c.017-3.481.874-6.351 2.499-8.431C5.867 1.354 8.619.176 12.19.176h.014c3.505.024 6.262 1.212 8.191 3.509 1.64 1.972 2.49 4.871 2.505 8.399.016 3.566-.872 6.448-2.556 8.432-1.92 2.235-4.678 3.457-8.158 3.484zm-.029-22.824h-.007c-3.048.02-5.286.96-6.846 2.796C3.86 5.93 3.17 8.437 3.156 11.996v.07c.013 3.595.706 6.127 2.152 8.049 1.552 2.04 3.79 3.073 6.852 3.096 2.988-.019 5.22-.961 6.832-2.879 1.483-1.771 2.213-4.44 2.199-7.933-.016-3.526-.754-6.125-2.193-7.888-1.553-1.898-3.79-2.862-6.841-2.335z"/></svg>
+          </a>
+          <a href="#" class="social-icon-btn ig" title="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="var(--cream)"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="var(--cream)" stroke-width="2"/></svg>
+          </a>
+          <a href="#" class="social-icon-btn tg" title="Telegram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.846 2.978 1.522 5.398 1.522 5.398.093.313.34.53.647.575.305.045.617-.1.79-.365l2.18-2.301 4.512 3.682.077.06c.959.72 2.249.206 2.498-.969l3.337-15.998c.197-.948-.156-1.832-.92-2.176zm-3.023 4.48-8.416 7.99-1.02 2.977-.636-2.327-1.57-5.527 11.642-3.113z"/></svg>
+          </a>
+          <a href="#" class="social-icon-btn sc" title="Snapchat">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.49-.104.28 0 .54.094.667.326.126.232.076.517-.1.7-.176.184-.55.289-.95.358-.136.023-.276.044-.402.089-.311.13-.568.376-.692.621-.12.238-.18.5-.163.77l.003.04c.032.403.105 1.286 1.17 1.572.39.108.699.427.699.752 0 .325-.31.643-.699.752-1.065.286-1.138 1.169-1.17 1.572l-.003.04c-.017.27-.042.533-.163.77-.124.246-.38.492-.692.622-.126.044-.266.065-.402.088-.4.07-.774.174-.95.358-.176.184-.226.469-.1.7.127.232.386.326.667.326.146 0 .325-.016.49-.104.374-.18.733-.285 1.033-.301.198 0 .326.045.401.09-.008.165-.018.33-.03.51l.003.06c.104 1.628.23 3.654-.299 4.847-1.583 3.545-4.94 3.821-5.93 3.821H11.794c-.99 0-4.347-.276-5.93-3.821-.529-1.193-.403-3.219-.299-4.847l.003-.06c-.012-.18-.022-.345-.03-.51.075-.045.203-.09.401-.09.3.016.659.12 1.033.301.165.088.344.104.49.104.28 0 .54-.094.667-.326.126-.232.076-.517-.1-.7-.176-.184-.55-.289-.95-.358-.136-.023-.276-.044-.402-.089-.311-.13-.568-.376-.692-.621-.12-.238-.18-.5-.163-.77l.003-.04c.032-.403.105-1.286 1.17-1.572.39-.108.699-.427.699-.752 0-.325-.31-.643-.699-.752-1.065-.286-1.138-1.169-1.17-1.572l-.003-.04c-.017-.27-.042-.533-.163-.77-.124-.246-.38-.492-.692-.622-.126-.044-.266-.065-.402-.088-.4-.07-.774-.174-.95-.358-.176-.184-.226-.469-.1-.7.127-.232.386-.326.667-.326.146 0 .325.016.49.104.374.18.733.285 1.033.301.198 0 .326-.045.401-.09-.008-.165-.018-.33-.03-.51l.003-.06c-.104-1.628-.23-3.654.299-4.847C7.46 1.07 10.816.793 11.806.793h.4z"/></svg>
+          </a>
+          <a href="#" class="social-icon-btn ms" title="Messenger">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.652V24l4.088-2.242c1.092.3 2.246.464 3.443.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26 6.559-6.963 3.13 3.259 5.889-3.259-6.56 6.963z"/></svg>
+          </a>
+          <a href="#" class="social-icon-btn tt" title="TikTok">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.79 1.53V6.76a4.85 4.85 0 0 1-1.02-.07z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT: Profile picture + floating badges -->
+      <div class="order-1 lg:order-2 flex justify-center" style="animation: fadeUp .8s ease forwards .2s; opacity:0;">
+        <div class="relative" style="width:320px;">
+          <!-- Profile -->
+          <div class="profile-wrap" style="width:200px;height:200px;margin:0 auto 0;">
+            <div class="profile-ring"></div>
+            <div class="profile-ring-inner"></div>
+            <div class="profile-img flex items-center justify-center text-5xl">👨🏾‍💻</div>
+          </div>
+
+          <!-- Floating badges around the picture -->
+          <div class="floating-badge" style="top:-10px;right:0;animation-delay:.5s;color:var(--green-deep);">
+            <span style="font-size:.8rem;">🌍 WDA Project Lead</span>
+          </div>
+          <div class="floating-badge" style="bottom:30px;left:-10px;animation-delay:1.2s;color:var(--blue-deep);">
+            <span style="font-size:.8rem;">📊 Data Analyst</span>
+          </div>
+          <div class="floating-badge" style="bottom:-10px;right:10px;animation-delay:.8s;color:var(--brown-deep);">
+            <span style="font-size:.8rem;">💻 Full Stack Dev</span>
+          </div>
+
+          <!-- Mini globe animation -->
+          <div class="absolute top-4 left-0" style="animation:float 5s ease-in-out infinite 1.5s;">
+            <svg width="50" height="50" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="45" fill="none" stroke="var(--green-light)" stroke-width="2" opacity=".4"/>
+              <circle cx="50" cy="50" r="35" fill="none" stroke="var(--blue-sky)" stroke-width="1.5" opacity=".3"/>
+              <circle cx="50" cy="50" r="20" fill="var(--green-pale)" opacity=".3"/>
+              <ellipse cx="50" cy="50" rx="15" ry="45" fill="none" stroke="var(--green-mid)" stroke-width="1.5" opacity=".35"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     WDA DATA SHOWCASE — Section 1
+════════════════════════════════════════════════════════════ -->
+<section id="wda" class="data-strip py-14 px-4 sm:px-6">
+  <div class="max-w-6xl mx-auto relative z-10">
+
+    <div class="text-center mb-10 reveal">
+      <div class="font-mono text-xs uppercase tracking-widest mb-2" style="color:var(--green-light)">— World Data Analysis Project —</div>
+      <h2 class="font-display font-black text-white" style="font-size:clamp(1.8rem,4vw,2.6rem);">
+        Data That Shapes Our World
+      </h2>
+      <p class="mt-2 text-sm" style="color:rgba(255,255,255,.55);max-width:540px;margin:8px auto 0;">
+        Curated global statistics from the platform I built — making world data transparent and accessible.
+      </p>
+    </div>
+
+    <!-- Stat tiles row -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-10 reveal">
+      <div class="stat-tile text-center">
+        <div class="text-2xl mb-1">🌍</div>
+        <div class="font-mono text-lg font-medium text-white">8.12B</div>
+        <div style="font-size:.65rem;color:rgba(255,255,255,.45);">World Population</div>
+      </div>
+      <div class="stat-tile text-center">
+        <div class="text-2xl mb-1">💰</div>
+        <div class="font-mono text-lg font-medium text-white">$105T</div>
+        <div style="font-size:.65rem;color:rgba(255,255,255,.45);">Global GDP</div>
+      </div>
+      <div class="stat-tile text-center">
+        <div class="text-2xl mb-1">🌡</div>
+        <div class="font-mono text-lg font-medium" style="color:#ef9a9a;">+1.2°C</div>
+        <div style="font-size:.65rem;color:rgba(255,255,255,.45);">Global Warming</div>
+      </div>
+      <div class="stat-tile text-center">
+        <div class="text-2xl mb-1">⚡</div>
+        <div class="font-mono text-lg font-medium" style="color:#ffd54f;">30%</div>
+        <div style="font-size:.65rem;color:rgba(255,255,255,.45);">Renewable Energy</div>
+      </div>
+      <div class="stat-tile text-center">
+        <div class="text-2xl mb-1">📡</div>
+        <div class="font-mono text-lg font-medium" style="color:var(--blue-pale);">5.4B</div>
+        <div style="font-size:.65rem;color:rgba(255,255,255,.45);">Internet Users</div>
+      </div>
+      <div class="stat-tile text-center">
+        <div class="text-2xl mb-1">❤️</div>
+        <div class="font-mono text-lg font-medium" style="color:var(--green-pale);">73.3</div>
+        <div style="font-size:.65rem;color:rgba(255,255,255,.45);">Life Expectancy</div>
+      </div>
+    </div>
+
+    <!-- Mini charts row -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal">
+
+      <!-- World Pop Map card -->
+      <div class="chart-card">
+        <div style="display:inline-flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:.7rem;font-weight:500;color:var(--blue-mid);background:var(--blue-pale);padding:3px 9px;border-radius:20px;margin-bottom:10px;">🗺 Population Map</div>
+        <div style="font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:#1a1a1a;margin-bottom:3px;">Global Population Density</div>
+        <div style="font-size:.75rem;color:#7a7a7a;margin-bottom:12px;">Choropleth — country level</div>
+        <div style="height:140px;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(145deg,#ddeeff 0%,#c8e6c9 40%,#bbdefb 80%,#d7ccc8 100%);">
+          <div class="blob" style="width:35%;height:50%;background:var(--green-mid);top:20%;left:15%;border-radius:50% 40% 60% 30% / 40% 50% 60% 50%;"></div>
+          <div class="blob" style="width:20%;height:40%;background:var(--brown-mid);top:30%;left:55%;border-radius:50%;animation-delay:2s;"></div>
+          <div class="blob" style="width:25%;height:35%;background:var(--green-light);top:45%;left:30%;animation-delay:1s;"></div>
+          <div class="blob" style="width:15%;height:28%;background:var(--blue-mid);top:20%;left:75%;border-radius:50%;animation-delay:3s;"></div>
+        </div>
+      </div>
+
+      <!-- GDP Bar chart -->
+      <div class="chart-card">
+        <div style="display:inline-flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:.7rem;font-weight:500;color:var(--green-deep);background:var(--green-pale);padding:3px 9px;border-radius:20px;margin-bottom:10px;">📊 Bar Chart</div>
+        <div style="font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:#1a1a1a;margin-bottom:3px;">Top 5 Economies</div>
+        <div style="font-size:.75rem;color:#7a7a7a;margin-bottom:12px;">GDP in Trillions USD · 2024</div>
+        <div style="height:140px;display:flex;flex-direction:column;justify-content:space-between;">
+          <div v-for="(e,i) in gdp" style="display:flex;align-items:center;gap:8px;">
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#7a7a7a;width:28px;text-align:right;">USA</div>
+            <div style="flex:1;height:20px;background:#f0ede8;border-radius:4px;overflow:hidden;"><div class="wda-bar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--blue-mid),var(--blue-sky));border-radius:4px;transition:width 1.4s ease;" data-w="95"></div></div>
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#4a4a4a;width:30px;">$27T</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#7a7a7a;width:28px;text-align:right;">CHN</div>
+            <div style="flex:1;height:20px;background:#f0ede8;border-radius:4px;overflow:hidden;"><div class="wda-bar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--green-mid),var(--green-light));border-radius:4px;transition:width 1.4s ease;" data-w="76"></div></div>
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#4a4a4a;width:30px;">$18T</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#7a7a7a;width:28px;text-align:right;">DEU</div>
+            <div style="flex:1;height:20px;background:#f0ede8;border-radius:4px;overflow:hidden;"><div class="wda-bar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--brown-mid),var(--brown-light));border-radius:4px;transition:width 1.4s ease;" data-w="38"></div></div>
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#4a4a4a;width:30px;">$4.4T</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#7a7a7a;width:28px;text-align:right;">IND</div>
+            <div style="flex:1;height:20px;background:#f0ede8;border-radius:4px;overflow:hidden;"><div class="wda-bar" style="height:100%;width:0%;background:linear-gradient(90deg,#e65100,#ff8f00);border-radius:4px;transition:width 1.4s ease;" data-w="28"></div></div>
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#4a4a4a;width:30px;">$3.5T</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#7a7a7a;width:28px;text-align:right;">JPN</div>
+            <div style="flex:1;height:20px;background:#f0ede8;border-radius:4px;overflow:hidden;"><div class="wda-bar" style="height:100%;width:0%;background:linear-gradient(90deg,#7b1fa2,#ab47bc);border-radius:4px;transition:width 1.4s ease;" data-w="24"></div></div>
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#4a4a4a;width:30px;">$4.2T</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Population Line chart -->
+      <div class="chart-card">
+        <div style="display:inline-flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:.7rem;font-weight:500;color:var(--blue-mid);background:var(--blue-pale);padding:3px 9px;border-radius:20px;margin-bottom:10px;">📈 Line Chart</div>
+        <div style="font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:#1a1a1a;margin-bottom:3px;">Population Growth</div>
+        <div style="font-size:.75rem;color:#7a7a7a;margin-bottom:8px;">1950–2025 · Billions</div>
+        <div style="height:140px;background:linear-gradient(180deg,#f0f8ff 0%,#e8f5e9 100%);border-radius:10px;position:relative;overflow:hidden;">
+          <svg viewBox="0 0 280 140" width="100%" height="100%">
+            <defs>
+              <linearGradient id="popgrad2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#1565c0" stop-opacity=".25"/>
+                <stop offset="100%" stop-color="#1565c0" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <line x1="30" y1="10" x2="275" y2="10" stroke="#e0e0e0" stroke-width="1"/>
+            <line x1="30" y1="40" x2="275" y2="40" stroke="#e0e0e0" stroke-width="1"/>
+            <line x1="30" y1="70" x2="275" y2="70" stroke="#e0e0e0" stroke-width="1"/>
+            <line x1="30" y1="100" x2="275" y2="100" stroke="#e0e0e0" stroke-width="1"/>
+            <line x1="30" y1="128" x2="275" y2="128" stroke="#ccc" stroke-width="1"/>
+            <text x="2" y="14" font-size="8" fill="#999" font-family="DM Mono">8B</text>
+            <text x="2" y="44" font-size="8" fill="#999" font-family="DM Mono">7B</text>
+            <text x="2" y="74" font-size="8" fill="#999" font-family="DM Mono">6B</text>
+            <text x="2" y="104" font-size="8" fill="#999" font-family="DM Mono">4B</text>
+            <path d="M30,128 L75,120 L120,105 L165,82 L210,52 L255,22 L275,12 L275,128Z" fill="url(#popgrad2)"/>
+            <polyline points="30,128 75,120 120,105 165,82 210,52 255,22 275,12" fill="none" stroke="#1565c0" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="275" cy="12" r="4" fill="#1565c0"/>
+            <text x="22" y="138" font-size="7" fill="#aaa" font-family="DM Mono">1950</text>
+            <text x="200" y="138" font-size="7" fill="#aaa" font-family="DM Mono">2010</text>
+            <text x="255" y="138" font-size="7" fill="#aaa" font-family="DM Mono">2025</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     EDUCATION & SKILLS
+════════════════════════════════════════════════════════════ -->
+<section id="education" class="py-20 px-4 sm:px-6" style="background:var(--warm-white);">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-12 reveal">
+      <div class="section-label justify-center" style="justify-content:center;">Education & Skills</div>
+      <h2 class="section-title">Academic Background</h2>
+      <p class="mt-3 text-sm" style="color:#7a7a7a;max-width:480px;margin:12px auto 0;">
+        Grounded in economics and technology — built to analyse, develop, and innovate.
+      </p>
+    </div>
+
+    <!-- Education Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">
+
+      <!-- JKUAT -->
+      <div class="edu-card reveal-left">
+        <div class="flex items-start gap-4">
+          <div class="w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden"
+               style="background:linear-gradient(135deg,#1a3c2e,#2d6a4f);">
+            <!-- JKUAT Logo placeholder -->
+            <div class="text-center p-1">
+              <div style="font-size:.45rem;font-weight:900;color:#b7e4c7;font-family:'Playfair Display',serif;line-height:1.1;">JKUAT</div>
+              <div style="font-size:.35rem;color:rgba(255,255,255,.6);line-height:1.1;margin-top:1px;">KENYA</div>
+            </div>
+          </div>
+          <div class="flex-1">
+            <div class="font-mono text-xs uppercase tracking-widest mb-1" style="color:var(--green-mid)">2018 – 2023</div>
+            <h3 class="font-display font-bold text-lg" style="color:var(--green-deep)">BSc Economics</h3>
+            <p class="text-sm font-semibold mb-1" style="color:#4a4a4a;">Jomo Kenyatta University of Agriculture & Technology</p>
+            <p style="font-size:.78rem;color:#7a7a7a;line-height:1.6;">Econometrics · Macroeconomics · Statistics · Financial Markets · Research Methods · Development Economics</p>
+            <div class="mt-2 flex flex-wrap gap-1">
+              <span class="px-2 py-1 rounded-full text-xs" style="background:var(--green-pale);color:var(--green-deep);">Economics</span>
+              <span class="px-2 py-1 rounded-full text-xs" style="background:var(--blue-pale);color:var(--blue-deep);">Econometrics</span>
+              <span class="px-2 py-1 rounded-full text-xs" style="background:var(--brown-pale);color:var(--brown-deep);">Statistics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KASNEB / CIFA -->
+      <div class="edu-card reveal-right">
+        <div class="flex items-start gap-4">
+          <div class="w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0"
+               style="background:linear-gradient(135deg,var(--blue-deep),var(--blue-mid));">
+            <div class="text-center p-1">
+              <div style="font-size:.42rem;font-weight:900;color:var(--blue-pale);font-family:'Playfair Display',serif;line-height:1.1;">KASNEB</div>
+              <div style="font-size:.32rem;color:rgba(255,255,255,.6);margin-top:1px;line-height:1.1;">CIFA</div>
+            </div>
+          </div>
+          <div class="flex-1">
+            <div class="font-mono text-xs uppercase tracking-widest mb-1" style="color:var(--blue-mid)">Professional Certification</div>
+            <h3 class="font-display font-bold text-lg" style="color:var(--blue-deep)">CIFA — Certified Investment & Financial Analyst</h3>
+            <p class="text-sm font-semibold mb-1" style="color:#4a4a4a;">KASNEB — Kenya Accountants & Secretaries National Examinations Board</p>
+            <p style="font-size:.78rem;color:#7a7a7a;line-height:1.6;">Investment Analysis · Portfolio Management · Financial Derivatives · Capital Markets · Risk Management</p>
+            <div class="mt-2 flex flex-wrap gap-1">
+              <span class="px-2 py-1 rounded-full text-xs" style="background:var(--blue-pale);color:var(--blue-deep);">Finance</span>
+              <span class="px-2 py-1 rounded-full text-xs" style="background:var(--green-pale);color:var(--green-deep);">Investment</span>
+              <span class="px-2 py-1 rounded-full text-xs" style="background:#fff3e0;color:#e65100;">Capital Markets</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="reveal mb-4">
+      <div class="section-label">Technical Skills</div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 reveal">
+
+      <!-- Web Development skills -->
+      <div>
+        <h3 class="font-display font-bold text-xl mb-4" style="color:var(--green-deep);">💻 Web Development</h3>
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between mb-1"><span style="font-size:.82rem;font-weight:600;color:#4a4a4a;">HTML5 / CSS3</span><span class="font-mono text-xs" style="color:var(--green-mid);">95%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="background:linear-gradient(90deg,var(--green-mid),var(--green-light));" data-skill="95"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1"><span style="font-size:.82rem;font-weight:600;color:#4a4a4a;">JavaScript (ES6+)</span><span class="font-mono text-xs" style="color:var(--green-mid);">88%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#f57f17,#ffd54f);" data-skill="88"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1"><span style="font-size:.82rem;font-weight:600;color:#4a4a4a;">Next.js / React</span><span class="font-mono text-xs" style="color:var(--blue-mid);">82%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="background:linear-gradient(90deg,var(--blue-mid),var(--blue-sky));" data-skill="82"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1"><span style="font-size:.82rem;font-weight:600;color:#4a4a4a;">Django / Python</span><span class="font-mono text-xs" style="color:var(--green-mid);">78%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#1b5e20,var(--green-mid));" data-skill="78"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1"><span style="font-size:.82rem;font-weight:600;color:#4a4a4a;">Tailwind CSS</span><span class="font-mono text-xs" style="color:var(--blue-sky);">90%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#0284c7,#38bdf8);" data-skill="90"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1"><span style="font-size:.82rem;font-weight:600;color:#4a4a4a;">D3.js / Plotly.js</span><span class="font-mono text-xs" style="color:var(--green-mid);">80%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#7b1fa2,#ce93d8);" data-skill="80"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data & Finance skills -->
+      <div>
+        <h3 class="font-display font-bold text-xl mb-4" style="color:var(--blue-deep);">📊 Data & Finance</h3>
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between mb-1"><span style="font-size:.82rem;font-weight:600;color:#4a4a4a;">Data Analysis (Python/Pandas)</span><span class="font-mono text-xs" style="color:var(--blue-mid);">85%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="background:linear-gradient(90deg,var(--blue-mid),var(--blue-sky));" data-skill="85"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1"><span style="font-size:.82rem;font-weight:600;color:#4a4a4a;">Data Visualisation</span><span class="font-mono text-xs" style="color:var(--green-mid);">88%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="background:linear-gradient(90deg,var(--green-mid),var(--green-light));" data-skill="88"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1"><span style="font-size:.82rem;font-weight:600;color:#4a4a4a;">Financial Modelling</span><span class="font-mono text-xs" style="color:var(--brown-mid);">82%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="background:linear-gradient(90deg,var(--brown-mid),var(--brown-light));" data-skill="82"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1"><span style="font-size:.82rem;font-weight:600;color:#4a4a4a;">SQL / Databases</span><span class="font-mono text-xs" style="color:var(--blue-mid);">78%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#0277bd,#4fc3f7);" data-skill="78"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1"><span style="font-size:.82rem;font-weight:600;color:#4a4a4a;">Investment Analysis</span><span class="font-mono text-xs" style="color:var(--brown-mid);">84%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#4e342e,var(--brown-mid));" data-skill="84"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1"><span style="font-size:.82rem;font-weight:600;color:#4a4a4a;">REST APIs / Backend</span><span class="font-mono text-xs" style="color:var(--green-mid);">76%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#1a3c2e,var(--green-mid));" data-skill="76"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech stack pills -->
+    <div class="mt-10 reveal">
+      <div class="font-mono text-xs uppercase tracking-widest mb-3" style="color:var(--green-mid);">Tech Stack</div>
+      <div class="flex flex-wrap gap-2">
+        <span class="px-3 py-2 rounded-lg text-sm font-semibold border" style="background:#fff3e0;color:#e65100;border-color:#ffe0b2;">HTML5</span>
+        <span class="px-3 py-2 rounded-lg text-sm font-semibold border" style="background:#e3f2fd;color:#1565c0;border-color:#bbdefb;">CSS3</span>
+        <span class="px-3 py-2 rounded-lg text-sm font-semibold border" style="background:#fff9c4;color:#f57f17;border-color:#fff176;">JavaScript</span>
+        <span class="px-3 py-2 rounded-lg text-sm font-semibold border" style="background:#e8f5e9;color:#2e7d32;border-color:#c8e6c9;">Next.js</span>
+        <span class="px-3 py-2 rounded-lg text-sm font-semibold border" style="background:#e8f5e9;color:#1b5e20;border-color:#a5d6a7;">Django</span>
+        <span class="px-3 py-2 rounded-lg text-sm font-semibold border" style="background:#e0f2f1;color:#00695c;border-color:#b2dfdb;">Tailwind CSS</span>
+        <span class="px-3 py-2 rounded-lg text-sm font-semibold border" style="background:#e8eaf6;color:#283593;border-color:#c5cae9;">D3.js</span>
+        <span class="px-3 py-2 rounded-lg text-sm font-semibold border" style="background:#fce4ec;color:#880e4f;border-color:#f8bbd0;">Plotly.js</span>
+        <span class="px-3 py-2 rounded-lg text-sm font-semibold border" style="background:#e8f5e9;color:#2d6a4f;border-color:var(--green-pale);">Python</span>
+        <span class="px-3 py-2 rounded-lg text-sm font-semibold border" style="background:#e3f2fd;color:#0d47a1;border-color:var(--blue-pale);">REST API</span>
+        <span class="px-3 py-2 rounded-lg text-sm font-semibold border" style="background:#ede7f6;color:#4527a0;border-color:#d1c4e9;">PostgreSQL</span>
+        <span class="px-3 py-2 rounded-lg text-sm font-semibold border" style="background:#fbe9e7;color:#bf360c;border-color:#ffccbc;">Git / GitHub</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     WDA DATA SHOWCASE — Section 2 (charts & insights)
+════════════════════════════════════════════════════════════ -->
+<section class="py-16 px-4 sm:px-6" style="background:var(--cream);">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-10 reveal">
+      <div class="section-label justify-center" style="justify-content:center;">From the WDA Project</div>
+      <h2 class="section-title">Global Insights Dashboard</h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 reveal">
+
+      <!-- Energy Donut -->
+      <div class="chart-card">
+        <div class="font-semibold text-sm mb-3" style="color:#4a4a4a;">⚡ Global Energy Mix 2024</div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <svg width="90" height="90" viewBox="0 0 90 90" style="flex-shrink:0;">
+            <circle cx="45" cy="45" r="34" fill="none" stroke="#e8e2d8" stroke-width="12"/>
+            <circle cx="45" cy="45" r="34" fill="none" stroke="#a1887f" stroke-width="12" stroke-dasharray="213 231" stroke-dashoffset="0" transform="rotate(-90 45 45)"/>
+            <circle cx="45" cy="45" r="34" fill="none" stroke="#52b788" stroke-width="12" stroke-dasharray="133 311" stroke-dashoffset="-213" transform="rotate(-90 45 45)"/>
+            <circle cx="45" cy="45" r="34" fill="none" stroke="#4a9fd4" stroke-width="12" stroke-dasharray="67 377" stroke-dashoffset="-346" transform="rotate(-90 45 45)"/>
+            <circle cx="45" cy="45" r="34" fill="none" stroke="#ffd54f" stroke-width="12" stroke-dasharray="31 413" stroke-dashoffset="-413" transform="rotate(-90 45 45)"/>
+            <text x="45" y="49" text-anchor="middle" font-size="11" font-family="DM Mono" fill="#4a4a4a">52%</text>
+            <text x="45" y="38" text-anchor="middle" font-size="8" fill="#7a7a7a">clean</text>
+          </svg>
+          <div style="font-size:.72rem;display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;align-items:center;gap:6px;"><div style="width:10px;height:10px;border-radius:50%;background:#52b788;flex-shrink:0;"></div>Solar/Wind 30%</div>
+            <div style="display:flex;align-items:center;gap:6px;"><div style="width:10px;height:10px;border-radius:50%;background:#4a9fd4;flex-shrink:0;"></div>Hydro 15%</div>
+            <div style="display:flex;align-items:center;gap:6px;"><div style="width:10px;height:10px;border-radius:50%;background:#ffd54f;flex-shrink:0;"></div>Nuclear 7%</div>
+            <div style="display:flex;align-items:center;gap:6px;"><div style="width:10px;height:10px;border-radius:50%;background:#a1887f;flex-shrink:0;"></div>Fossil 48%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CO2 line sparkline -->
+      <div class="chart-card">
+        <div class="font-semibold text-sm mb-1" style="color:#4a4a4a;">🌡 CO₂ Concentration (ppm)</div>
+        <div style="font-size:.7rem;color:#7a7a7a;margin-bottom:8px;">Atmospheric — rising trend</div>
+        <svg viewBox="0 0 240 90" width="100%" height="90">
+          <defs>
+            <linearGradient id="co2g2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#e53935" stop-opacity=".3"/>
+              <stop offset="100%" stop-color="#e53935" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <line x1="0" y1="20" x2="240" y2="20" stroke="#f0ede8" stroke-width="1"/>
+          <line x1="0" y1="50" x2="240" y2="50" stroke="#f0ede8" stroke-width="1"/>
+          <line x1="0" y1="80" x2="240" y2="80" stroke="#e0e0e0" stroke-width="1"/>
+          <path d="M0,78 L40,72 L80,64 L120,54 L160,40 L200,26 L240,12 L240,80 L0,80Z" fill="url(#co2g2)"/>
+          <polyline points="0,78 40,72 80,64 120,54 160,40 200,26 240,12" fill="none" stroke="#e53935" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="240" cy="12" r="4" fill="#e53935"/>
+          <text x="228" y="9" font-size="9" fill="#e53935" font-family="DM Mono">421</text>
+          <text x="0" y="88" font-size="8" fill="#aaa" font-family="DM Mono">1960</text>
+          <text x="100" y="88" font-size="8" fill="#aaa" font-family="DM Mono">1990</text>
+          <text x="210" y="88" font-size="8" fill="#aaa" font-family="DM Mono">2025</text>
+        </svg>
+      </div>
+
+      <!-- Literacy bars -->
+      <div class="chart-card">
+        <div class="font-semibold text-sm mb-3" style="color:#4a4a4a;">📚 Literacy Rate by Region</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#7a7a7a;width:30px;">EUR</div>
+            <div style="flex:1;height:18px;background:#f0ede8;border-radius:4px;overflow:hidden;"><div class="wda-bar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--blue-mid),var(--blue-sky));border-radius:4px;transition:width 1.4s ease;" data-w="99"></div></div>
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#4a4a4a;width:28px;">99%</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#7a7a7a;width:30px;">AME</div>
+            <div style="flex:1;height:18px;background:#f0ede8;border-radius:4px;overflow:hidden;"><div class="wda-bar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--green-mid),var(--green-light));border-radius:4px;transition:width 1.4s ease;" data-w="94"></div></div>
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#4a4a4a;width:28px;">94%</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#7a7a7a;width:30px;">ASI</div>
+            <div style="flex:1;height:18px;background:#f0ede8;border-radius:4px;overflow:hidden;"><div class="wda-bar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--brown-mid),var(--brown-light));border-radius:4px;transition:width 1.4s ease;" data-w="85"></div></div>
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#4a4a4a;width:28px;">85%</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#7a7a7a;width:30px;">AFR</div>
+            <div style="flex:1;height:18px;background:#f0ede8;border-radius:4px;overflow:hidden;"><div class="wda-bar" style="height:100%;width:0%;background:linear-gradient(90deg,#e65100,#ff8f00);border-radius:4px;transition:width 1.4s ease;" data-w="65"></div></div>
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#4a4a4a;width:28px;">65%</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#7a7a7a;width:30px;">OCE</div>
+            <div style="flex:1;height:18px;background:#f0ede8;border-radius:4px;overflow:hidden;"><div class="wda-bar" style="height:100%;width:0%;background:linear-gradient(90deg,#7b1fa2,#ab47bc);border-radius:4px;transition:width 1.4s ease;" data-w="96"></div></div>
+            <div style="font-size:.65rem;font-family:'DM Mono',monospace;color:#4a4a4a;width:28px;">96%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     PROJECTS
+════════════════════════════════════════════════════════════ -->
+<section id="projects" class="py-20 px-4 sm:px-6" style="background:var(--warm-white);">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12 reveal">
+      <div class="section-label justify-center" style="justify-content:center;">Featured Work</div>
+      <h2 class="section-title">Projects</h2>
+      <p class="mt-3 text-sm" style="color:#7a7a7a;max-width:480px;margin:12px auto 0;">Building platforms that make data transparent, accessible, and actionable.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- Project 1: WDA -->
+      <div class="project-card reveal-left">
+        <div class="project-card-banner" style="background:linear-gradient(135deg,var(--green-deep) 0%,var(--blue-deep) 100%);">
+          <div class="overlay"></div>
+          <!-- Mini world viz inside banner -->
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.25;">
+            <svg width="200" height="160" viewBox="0 0 200 160">
+              <circle cx="100" cy="80" r="60" fill="none" stroke="white" stroke-width="1"/>
+              <circle cx="100" cy="80" r="45" fill="none" stroke="white" stroke-width=".5"/>
+              <ellipse cx="100" cy="80" rx="20" ry="60" fill="none" stroke="white" stroke-width=".7"/>
+              <line x1="40" y1="80" x2="160" y2="80" stroke="white" stroke-width=".5"/>
+              <line x1="40" y1="55" x2="160" y2="55" stroke="white" stroke-width=".3"/>
+              <line x1="40" y1="105" x2="160" y2="105" stroke="white" stroke-width=".3"/>
+            </svg>
+          </div>
+          <div style="position:absolute;bottom:16px;left:20px;right:20px;">
+            <div class="text-white font-display font-bold text-xl">World Data Analysis</div>
+            <div style="font-size:.75rem;color:rgba(255,255,255,.65);">www.worlddataanalysis.com</div>
+          </div>
+          <div style="position:absolute;top:14px;right:14px;" class="px-3 py-1 rounded-full text-xs font-bold" style="background:var(--green-light);color:var(--green-deep);">
+            🟢 LIVE
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center gap-2 mb-3 flex-wrap">
+            <span class="px-2 py-1 rounded-full text-xs font-semibold" style="background:var(--green-pale);color:var(--green-deep);">Full Stack</span>
+            <span class="px-2 py-1 rounded-full text-xs font-semibold" style="background:var(--blue-pale);color:var(--blue-deep);">Data Viz</span>
+            <span class="px-2 py-1 rounded-full text-xs font-semibold" style="background:var(--brown-pale);color:var(--brown-deep);">Django</span>
+            <span class="px-2 py-1 rounded-full text-xs font-semibold" style="background:#e8f5e9;color:#1b5e20;">Next.js</span>
+          </div>
+          <p style="font-size:.82rem;color:#4a4a4a;line-height:1.7;margin-bottom:16px;">
+            A comprehensive data journalism platform inspired by Our World in Data. Features interactive choropleth maps, real-time data feeds, long-form analysis articles, and animated charts built with D3.js and Plotly.js. Powered by Django REST API with World Bank data integration.
+          </p>
+          <div class="flex gap-3 flex-wrap">
+            <a href="http://www.worlddataanalysis.com" target="_blank"
+               class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all hover:-translate-y-1"
+               style="background:linear-gradient(135deg,var(--green-deep),var(--blue-deep));">
+              🌍 Visit Site
+            </a>
+            <a href="https://github.com" target="_blank"
+               class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold border transition-all hover:-translate-y-1 hover:bg-gray-50"
+               style="border-color:var(--border);color:#4a4a4a;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: World Finance Dashboard -->
+      <div class="project-card reveal-right">
+        <div class="project-card-banner" style="background:linear-gradient(135deg,#1b5e20 0%,#0d47a1 50%,#4a148c 100%);">
+          <div class="overlay"></div>
+          <!-- Finance mini chart in banner -->
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.2;">
+            <svg width="200" height="100" viewBox="0 0 200 100">
+              <polyline points="0,80 20,70 40,75 60,55 80,60 100,40 120,45 140,25 160,30 180,15 200,18" fill="none" stroke="white" stroke-width="2"/>
+              <polyline points="0,90 20,88 40,85 60,80 80,75 100,65 120,60 140,50 160,45 180,35 200,30" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div style="position:absolute;bottom:16px;left:20px;right:20px;">
+            <div class="text-white font-display font-bold text-xl">World Finance Dashboard</div>
+            <div style="font-size:.75rem;color:rgba(255,255,255,.65);">Indexes · Crypto · Markets · Calculators</div>
+          </div>
+          <div style="position:absolute;top:14px;right:14px;background:rgba(255,255,255,.15);backdrop-filter:blur(6px);color:white;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.2);">
+            🔨 In Development
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center gap-2 mb-3 flex-wrap">
+            <span class="px-2 py-1 rounded-full text-xs font-semibold" style="background:#e8eaf6;color:#283593;">Finance</span>
+            <span class="px-2 py-1 rounded-full text-xs font-semibold" style="background:#e8f5e9;color:#1b5e20;">Next.js</span>
+            <span class="px-2 py-1 rounded-full text-xs font-semibold" style="background:#fce4ec;color:#880e4f;">Real-time APIs</span>
+            <span class="px-2 py-1 rounded-full text-xs font-semibold" style="background:#e0f2f1;color:#004d40;">Crypto</span>
+          </div>
+          <p style="font-size:.82rem;color:#4a4a4a;line-height:1.7;margin-bottom:16px;">
+            A comprehensive global financial intelligence platform featuring live stock market indexes (NYSE, NSE, LSE), cryptocurrency dashboards, forex rates, commodity prices, financial calculators (compound interest, loan, ROI), and portfolio trackers.
+          </p>
+          <div class="grid grid-cols-2 gap-2 mb-4">
+            <div class="rounded-lg p-2 text-center" style="background:var(--green-pale);">
+              <div style="font-size:.65rem;color:var(--green-deep);font-weight:600;">📈 Market Indexes</div>
+            </div>
+            <div class="rounded-lg p-2 text-center" style="background:var(--blue-pale);">
+              <div style="font-size:.65rem;color:var(--blue-deep);font-weight:600;">₿ Crypto Tracker</div>
+            </div>
+            <div class="rounded-lg p-2 text-center" style="background:var(--brown-pale);">
+              <div style="font-size:.65rem;color:var(--brown-deep);font-weight:600;">💱 Forex Rates</div>
+            </div>
+            <div class="rounded-lg p-2 text-center" style="background:#e8f5e9;">
+              <div style="font-size:.65rem;color:#1b5e20;font-weight:600;">🧮 Calculators</div>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <a href="https://github.com" target="_blank"
+               class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold border transition-all hover:-translate-y-1 hover:bg-gray-50"
+               style="border-color:var(--border);color:#4a4a4a;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              Follow on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     BLOG BRIEFS — WDA Insights
+════════════════════════════════════════════════════════════ -->
+<section id="blog" class="py-20 px-4 sm:px-6" style="background:var(--cream);">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12 reveal">
+      <div class="section-label justify-center" style="justify-content:center;">World Data Briefs</div>
+      <h2 class="section-title">Global Insights</h2>
+      <p class="mt-3 text-sm" style="color:#7a7a7a;max-width:540px;margin:12px auto 0;">
+        Data-driven snapshots of our world — excerpts from the World Data Analysis project.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 reveal">
+
+      <div class="blog-brief">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-2xl">🌍</span>
+          <span class="px-2 py-1 rounded-full text-xs font-semibold" style="background:var(--green-pale);color:var(--green-deep);">Population</span>
+        </div>
+        <h3 class="font-display font-bold text-base mb-2" style="color:var(--green-deep);">World population crosses 8 billion</h3>
+        <p style="font-size:.78rem;color:#7a7a7a;line-height:1.65;">The world hit 8 billion people in November 2022. Asia holds over 60% of the global population, led by India and China — each with over 1.4 billion people.</p>
+        <div class="mt-3 pt-3" style="border-top:1px solid var(--border);">
+          <div style="font-family:'DM Mono',monospace;font-size:1.2rem;font-weight:500;color:var(--green-deep);">8.12B</div>
+          <div style="font-size:.65rem;color:#7a7a7a;">people on Earth · 2025</div>
+        </div>
+      </div>
+
+      <div class="blog-brief">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-2xl">🇷🇺</span>
+          <span class="px-2 py-1 rounded-full text-xs font-semibold" style="background:var(--blue-pale);color:var(--blue-deep);">Geography</span>
+        </div>
+        <h3 class="font-display font-bold text-base mb-2" style="color:var(--green-deep);">Russia remains the world's largest country</h3>
+        <p style="font-size:.78rem;color:#7a7a7a;line-height:1.65;">Russia covers 17.1 million km² — spanning 11 time zones and over one-eighth of Earth's inhabited land. It is nearly twice the size of Canada, the second largest country.</p>
+        <div class="mt-3 pt-3" style="border-top:1px solid var(--border);">
+          <div style="font-family:'DM Mono',monospace;font-size:1.2rem;font-weight:500;color:var(--blue-mid);">17.1M km²</div>
+          <div style="font-size:.65rem;color:#7a7a7a;">total land area · Russia</div>
+        </div>
+      </div>
+
+      <div class="blog-brief">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-2xl">🇺🇸</span>
+          <span class="px-2 py-1 rounded-full text-xs font-semibold" style="background:#fff3e0;color:#e65100;">Economy</span>
+        </div>
+        <h3 class="font-display font-bold text-base mb-2" style="color:var(--green-deep);">USA is the world's top economy</h3>
+        <p style="font-size:.78rem;color:#7a7a7a;line-height:1.65;">The United States leads global GDP with $27 trillion — making up about 25% of world output. China, at $18T, follows in second place and is projected to overtake by 2035.</p>
+        <div class="mt-3 pt-3" style="border-top:1px solid var(--border);">
+          <div style="font-family:'DM Mono',monospace;font-size:1.2rem;font-weight:500;color:#e65100;">$27T</div>
+          <div style="font-size:.65rem;color:#7a7a7a;">USA GDP · World Bank 2024</div>
+        </div>
+      </div>
+
+      <div class="blog-brief">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-2xl">🌲</span>
+          <span class="px-2 py-1 rounded-full text-xs font-semibold" style="background:#e8f5e9;color:#1b5e20;">Environment</span>
+        </div>
+        <h3 class="font-display font-bold text-base mb-2" style="color:var(--green-deep);">World forest cover stands at 31%</h3>
+        <p style="font-size:.78rem;color:#7a7a7a;line-height:1.65;">Approximately 4.06 billion hectares of forest cover 31% of Earth's land. Yet deforestation claims 4.2 million hectares annually — primarily in tropical regions of Brazil and the Congo Basin.</p>
+        <div class="mt-3 pt-3" style="border-top:1px solid var(--border);">
+          <div style="font-family:'DM Mono',monospace;font-size:1.2rem;font-weight:500;color:#1b5e20;">−4.2M ha</div>
+          <div style="font-size:.65rem;color:#7a7a7a;">forest lost per year · FAO</div>
+        </div>
+      </div>
+
+      <div class="blog-brief">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-2xl">⚡</span>
+          <span class="px-2 py-1 rounded-full text-xs font-semibold" style="background:#e8eaf6;color:#283593;">Energy</span>
+        </div>
+        <h3 class="font-display font-bold text-base mb-2" style="color:var(--green-deep);">Renewables now 30% of the global energy mix</h3>
+        <p style="font-size:.78rem;color:#7a7a7a;line-height:1.65;">Solar and wind capacity additions hit record highs in 2024, making renewables 30% of global electricity generation. Costs have fallen 89% for solar over the last decade.</p>
+        <div class="mt-3 pt-3" style="border-top:1px solid var(--border);">
+          <div style="font-family:'DM Mono',monospace;font-size:1.2rem;font-weight:500;color:#283593;">−89%</div>
+          <div style="font-size:.65rem;color:#7a7a7a;">solar cost reduction · 2010–2024</div>
+        </div>
+      </div>
+
+      <div class="blog-brief">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-2xl">💊</span>
+          <span class="px-2 py-1 rounded-full text-xs font-semibold" style="background:#fce4ec;color:#880e4f;">Health</span>
+        </div>
+        <h3 class="font-display font-bold text-base mb-2" style="color:var(--green-deep);">Global life expectancy rises to 73.3 years</h3>
+        <p style="font-size:.78rem;color:#7a7a7a;line-height:1.65;">Average global life expectancy has increased by 6 years since 2000, reaching 73.3 years in 2024. Japan leads at 84 years; improvements are most dramatic in sub-Saharan Africa.</p>
+        <div class="mt-3 pt-3" style="border-top:1px solid var(--border);">
+          <div style="font-family:'DM Mono',monospace;font-size:1.2rem;font-weight:500;color:#880e4f;">73.3 yrs</div>
+          <div style="font-size:.65rem;color:#7a7a7a;">global average · WHO 2024</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-8 reveal">
+      <a href="http://www.worlddataanalysis.com" target="_blank"
+         class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all hover:-translate-y-1"
+         style="background:var(--green-deep);color:white;box-shadow:0 4px 16px rgba(26,60,46,.25);">
+        🌍 Read all analyses on WDA Project →
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════════════════════ -->
+<section id="contact" class="py-20 px-4 sm:px-6" style="background:var(--warm-white);">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12 reveal">
+      <div class="section-label justify-center" style="justify-content:center;">Get In Touch</div>
+      <h2 class="section-title">Contact Me</h2>
+      <p class="mt-3 text-sm" style="color:#7a7a7a;max-width:480px;margin:12px auto 0;">
+        Available for projects, collaborations, consulting, and data partnerships.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+      <!-- Contact Form -->
+      <div class="reveal-left">
+        <div style="background:#fff;border:1px solid var(--border);border-radius:20px;padding:32px;box-shadow:var(--shadow-sm);">
+          <h3 class="font-display font-bold text-xl mb-6" style="color:var(--green-deep);">Send a Message</h3>
+          <form id="contactForm" onsubmit="handleSubmit(event)" novalidate>
+            <div class="mb-4">
+              <label class="form-label">Your Name *</label>
+              <input type="text" class="form-input" placeholder="e.g. Jane Doe" required id="fname">
+            </div>
+            <div class="mb-4">
+              <label class="form-label">Email Address *</label>
+              <input type="email" class="form-input" placeholder="your@email.com" required id="femail">
+            </div>
+            <div class="mb-4">
+              <label class="form-label">Subject</label>
+              <input type="text" class="form-input" placeholder="e.g. Project Collaboration" id="fsubject">
+            </div>
+            <div class="mb-5">
+              <label class="form-label">Message *</label>
+              <textarea class="form-input" rows="5" placeholder="Tell me about your project, idea or inquiry..." required id="fmessage" style="resize:vertical;"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">
+              Send Message ✉️
+            </button>
+            <div id="form-feedback" style="display:none;margin-top:12px;padding:10px 14px;border-radius:8px;font-size:.82rem;"></div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="reveal-right flex flex-col gap-5">
+
+        <!-- Joseph's contact -->
+        <div style="background:#fff;border:1px solid var(--border);border-radius:20px;padding:24px;box-shadow:var(--shadow-sm);">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center text-lg" style="background:linear-gradient(135deg,var(--green-mid),var(--blue-sky))">👨🏾‍💻</div>
+            <div>
+              <div class="font-bold text-sm" style="color:var(--green-deep)">Joseph Wanyoike Njoroge</div>
+              <div style="font-size:.72rem;color:#7a7a7a;">Data Analyst · Full Stack Developer</div>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <span class="text-lg">📞</span>
+              <a href="tel:+254725455307" class="text-sm" style="color:var(--green-mid);font-weight:500;">+254 725 455 307</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-lg">✉️</span>
+              <a href="mailto:email@josephwanyoike.com" class="text-sm" style="color:var(--blue-mid);font-weight:500;">email@josephwanyoike.com</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-lg">🌐</span>
+              <a href="http://www.josephwanyoike.com" class="text-sm" style="color:var(--green-mid);font-weight:500;">www.josephwanyoike.com</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-lg">📍</span>
+              <span class="text-sm" style="color:#7a7a7a;">Nairobi, Kenya 🇰🇪</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- WDA Contact -->
+        <div style="background:linear-gradient(135deg,var(--green-deep),var(--blue-deep));border-radius:20px;padding:24px;">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center text-lg" style="background:rgba(255,255,255,.15);">🌍</div>
+            <div>
+              <div class="font-bold text-sm" style="color:var(--green-pale)">World Data Analysis Project</div>
+              <div style="font-size:.72rem;color:rgba(255,255,255,.5);">Data partnerships & media enquiries</div>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <span class="text-lg">✉️</span>
+              <a href="mailto:info@worlddataanalysis.com" style="color:var(--blue-pale);font-size:.85rem;font-weight:500;">info@worlddataanalysis.com</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-lg">🌐</span>
+              <a href="http://www.worlddataanalysis.com" target="_blank" style="color:var(--green-pale);font-size:.85rem;font-weight:500;">www.worlddataanalysis.com</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-lg">📞</span>
+              <a href="tel:+254702130630" style="color:rgba(255,255,255,.8);font-size:.85rem;">+254 702 130 630</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social media on contact -->
+        <div style="background:#fff;border:1px solid var(--border);border-radius:20px;padding:20px;box-shadow:var(--shadow-sm);">
+          <div class="font-mono text-xs uppercase tracking-widest mb-3" style="color:var(--green-mid);">All Social Platforms</div>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://linkedin.com" target="_blank" class="social-icon-btn li" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="https://github.com" target="_blank" class="social-icon-btn gh" title="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+            <a href="https://wa.me/254725455307" class="social-icon-btn wa" title="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+            <a href="#" class="social-icon-btn wab" title="WhatsApp Business"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+            <a href="#" class="social-icon-btn fb" title="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="#" class="social-icon-btn x" title="X"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" class="social-icon-btn ig" title="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="var(--cream)"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="var(--cream)" stroke-width="2"/></svg></a>
+            <a href="#" class="social-icon-btn tg" title="Telegram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-8.609 3.33c-2.068.8-4.133 1.598-5.724 2.21a405.15 405.15 0 0 1-2.849 1.09c-.42.147-.99.332-1.473.901-.728.968.193 1.798.919 2.286 1.61.516 3.275 1.009 4.654 1.472.846 2.978 1.522 5.398 1.522 5.398.093.313.34.53.647.575.305.045.617-.1.79-.365l2.18-2.301 4.512 3.682.077.06c.959.72 2.249.206 2.498-.969l3.337-15.998c.197-.948-.156-1.832-.92-2.176zm-3.023 4.48-8.416 7.99-1.02 2.977-.636-2.327-1.57-5.527 11.642-3.113z"/></svg></a>
+            <a href="#" class="social-icon-btn ms" title="Messenger"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.652V24l4.088-2.242c1.092.3 2.246.464 3.443.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26 6.559-6.963 3.13 3.259 5.889-3.259-6.56 6.963z"/></svg></a>
+            <a href="#" class="social-icon-btn tt" title="TikTok"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.79 1.53V6.76a4.85 4.85 0 0 1-1.02-.07z"/></svg></a>
+            <a href="#" class="social-icon-btn sc" title="Snapchat"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.49-.104.28 0 .54.094.667.326.126.232.076.517-.1.7-.176.184-.55.289-.95.358-.136.023-.276.044-.402.089-.311.13-.568.376-.692.621-.12.238-.18.5-.163.77l.003.04c.032.403.105 1.286 1.17 1.572.39.108.699.427.699.752 0 .325-.31.643-.699.752-1.065.286-1.138 1.169-1.17 1.572l-.003.04c-.017.27-.042.533-.163.77-.124.246-.38.492-.692.622-.126.044-.266.065-.402.088-.4.07-.774.174-.95.358-.176.184-.226.469-.1.7.127.232.386.326.667.326.146 0 .325-.016.49-.104.374-.18.733-.285 1.033-.301.198 0 .326.045.401.09-.008.165-.018.33-.03.51l.003.06c.104 1.628.23 3.654-.299 4.847-1.583 3.545-4.94 3.821-5.93 3.821H11.794c-.99 0-4.347-.276-5.93-3.821-.529-1.193-.403-3.219-.299-4.847l.003-.06c-.012-.18-.022-.345-.03-.51.075-.045.203-.09.401-.09.3.016.659.12 1.033.301.165.088.344.104.49.104.28 0 .54-.094.667-.326.126-.232.076-.517-.1-.7-.176-.184-.55-.289-.95-.358-.136-.023-.276-.044-.402-.089-.311-.13-.568-.376-.692-.621-.12-.238-.18-.5-.163-.77l.003-.04c.032-.403.105-1.286 1.17-1.572.39-.108.699-.427.699-.752 0-.325-.31-.643-.699-.752-1.065-.286-1.138-1.169-1.17-1.572l-.003-.04c-.017-.27-.042-.533-.163-.77-.124-.246-.38-.492-.692-.622-.126-.044-.266-.065-.402-.088-.4-.07-.774-.174-.95-.358-.176-.184-.226-.469-.1-.7.127-.232.386-.326.667-.326.146 0 .325.016.49.104.374.18.733.285 1.033.301.198 0 .326-.045.401-.09-.008-.165-.018-.33-.03-.51l.003-.06c-.104-1.628-.23-3.654.299-4.847C7.46 1.07 10.816.793 11.806.793h.4z"/></svg></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════════ -->
+<footer style="background:var(--brown-deep);">
+
+  <!-- Footer top — WDA mini data strip -->
+  <div style="background:linear-gradient(135deg,var(--green-deep),var(--blue-deep));padding:20px clamp(1rem,4vw,3rem);">
+    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="text-2xl">🌍</div>
+        <div>
+          <div class="font-display font-bold text-sm" style="color:var(--green-pale);">World Data Analysis Project</div>
+          <div style="font-size:.68rem;color:rgba(255,255,255,.45);">Data transparency · Global insights</div>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-4">
+        <div class="text-center">
+          <div class="font-mono font-medium text-white text-sm">8.12B</div>
+          <div style="font-size:.6rem;color:rgba(255,255,255,.4);">Population</div>
+        </div>
+        <div class="text-center">
+          <div class="font-mono font-medium text-white text-sm">$105T</div>
+          <div style="font-size:.6rem;color:rgba(255,255,255,.4);">World GDP</div>
+        </div>
+        <div class="text-center">
+          <div class="font-mono font-medium text-white text-sm">150+</div>
+          <div style="font-size:.6rem;color:rgba(255,255,255,.4);">Datasets</div>
+        </div>
+        <div class="text-center">
+          <div class="font-mono font-medium text-white text-sm">100+</div>
+          <div style="font-size:.6rem;color:rgba(255,255,255,.4);">Articles</div>
+        </div>
+      </div>
+      <a href="http://www.worlddataanalysis.com" target="_blank"
+         class="px-4 py-2 rounded-lg text-sm font-semibold transition-all hover:-translate-y-1"
+         style="background:rgba(255,255,255,.12);color:white;border:1px solid rgba(255,255,255,.2);">
+        Visit WDA →
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer main -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center text-lg" style="background:linear-gradient(135deg,var(--green-mid),var(--blue-sky))">👨🏾‍💻</div>
+          <div>
+            <div class="font-display font-bold" style="color:var(--brown-pale);">Joseph Wanyoike Njoroge</div>
+            <div class="font-mono text-xs" style="color:var(--brown-light);">Data Analyst · Full Stack Developer · Finance Analyst</div>
+          </div>
+        </div>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.7;max-width:320px;">
+          Building data-driven platforms that make complex world information transparent, accessible and beautiful. Lead Developer of the World Data Analysis Project.
+        </p>
+        <div class="flex flex-wrap gap-2 mt-4">
+          <a href="https://linkedin.com" target="_blank" class="social-icon-btn li" title="LinkedIn" style="width:36px;height:36px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://github.com" target="_blank" class="social-icon-btn gh" title="GitHub" style="width:36px;height:36px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+          <a href="https://wa.me/254725455307" class="social-icon-btn wa" title="WhatsApp" style="width:36px;height:36px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+          <a href="#" class="social-icon-btn fb" title="Facebook" style="width:36px;height:36px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" class="social-icon-btn x" title="X" style="width:36px;height:36px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--brown-light);margin-bottom:14px;">Navigation</h4>
+        <ul class="space-y-2">
+          <li><a href="#home" class="footer-link">🏠 Home</a></li>
+          <li><a href="#wda" class="footer-link">🌍 WDA Data</a></li>
+          <li><a href="#education" class="footer-link">🎓 Education</a></li>
+          <li><a href="#projects" class="footer-link">💻 Projects</a></li>
+          <li><a href="#blog" class="footer-link">📰 Blog</a></li>
+          <li><a href="#contact" class="footer-link">✉️ Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--brown-light);margin-bottom:14px;">Platforms</h4>
+        <ul class="space-y-2">
+          <li><a href="http://www.worlddataanalysis.com" target="_blank" class="footer-link">🌍 World Data Analysis</a></li>
+          <li><a href="#projects" class="footer-link">📊 World Finance Dashboard</a></li>
+          <li><a href="mailto:email@josephwanyoike.com" class="footer-link">✉️ email@josephwanyoike.com</a></li>
+          <li><a href="mailto:info@worlddataanalysis.com" class="footer-link">📧 info@worlddataanalysis.com</a></li>
+          <li><a href="tel:+254725455307" class="footer-link">📞 +254 725 455 307</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer divider -->
+    <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:24px;">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div style="font-size:.75rem;color:rgba(255,255,255,.3);">
+          © <span id="yr"></span> All rights reserved.
+          <a href="#home" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="color:var(--green-pale);font-weight:600;margin-left:4px;">Joseph Wanyoike Njoroge</a>
+          &nbsp;·&nbsp;
+          <a href="http://www.worlddataanalysis.com" target="_blank" style="color:var(--blue-pale);font-weight:600;">World Data Analysis</a>
+        </div>
+        <div style="font-size:.72rem;color:rgba(255,255,255,.25);">
+          Built with ❤️ using HTML · CSS · JavaScript · Tailwind CSS
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════════════════ -->
+<script>
+  // ── Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // ── Nav scroll effect & active link
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+    // Active link
+    const sections = ['home','wda','education','projects','blog','contact'];
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 100) current = id;
+    });
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+  });
+
+  // ── Hamburger toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  // Close on mobile link click
+  mobileMenu.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // ── Scroll reveal
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.transitionDelay = (i * 0.07) + 's';
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
+
+  // ── Animate all bar fills on scroll into view
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.wda-bar, .skill-bar-fill').forEach(bar => {
+          const w = bar.dataset.w || bar.dataset.skill;
+          if (w) setTimeout(() => { bar.style.width = w + '%'; }, 300);
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.chart-card, .edu-card, section').forEach(el => barObserver.observe(el));
+
+  // ── Skill bars (using data-skill)
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        const skillSection = bar.closest('section');
+        if (skillSection) barObserver.observe(skillSection);
+      });
+    }, 400);
+  });
+
+  // ── Contact form
+  function handleSubmit(e) {
+    e.preventDefault();
+    const name    = document.getElementById('fname').value.trim();
+    const email   = document.getElementById('femail').value.trim();
+    const message = document.getElementById('fmessage').value.trim();
+    const fb      = document.getElementById('form-feedback');
+
+    if (!name || !email || !message) {
+      fb.style.display = 'block';
+      fb.style.background = '#fce4ec';
+      fb.style.color = '#c62828';
+      fb.textContent = '⚠️ Please fill in all required fields.';
+      return;
+    }
+    // Compose mailto
+    const subject = document.getElementById('fsubject').value || 'Portfolio Contact';
+    const body = `Name: ${name}%0AEmail: ${email}%0A%0A${message}`;
+    window.location.href = `mailto:email@josephwanyoike.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+    fb.style.display = 'block';
+    fb.style.background = '#e8f5e9';
+    fb.style.color = '#2e7d32';
+    fb.textContent = '✅ Opening your email client... Thank you!';
+  }
+
+  // ── Live population counter
+  let popCount = 8120000000;
+  setInterval(() => {
+    popCount += Math.floor(Math.random() * 3) + 1;
+    document.querySelectorAll('.live-pop').forEach(el => {
+      el.textContent = (popCount / 1e9).toFixed(3) + 'B';
+    });
+  }, 800);
+
+  // ── Smooth scroll for all anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
